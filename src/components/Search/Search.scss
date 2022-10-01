@@ -1,0 +1,31 @@
+.search {
+   display: flex;
+   input {
+      font-family: inherit;
+      flex: 1 0 auto;
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px 0 0 10px;
+   }
+}
+.btns {
+   display: flex;
+   .btn {
+      font-family: inherit;
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      padding: 0 10px;
+      transition: all 0.3s ease 0s;
+      color: rgba(128, 128, 128, 0.7);
+      @media (min-width: 920px) {
+         &:hover {
+            background-color: rgba(0, 195, 255, 0.774);
+            color: #fff;
+         }
+      }
+      &._active {
+         background-color: rgba(0, 195, 255, 0.774);
+         color: #fff;
+      }
+   }
+}

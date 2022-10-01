@@ -1,0 +1,30 @@
+@import "./variables.scss";
+@import "./null.scss";
+
+body {
+   font-family: $fontFamily, sans-serif;
+}
+._container {
+   max-width: 600px;
+   margin: 0 auto;
+   padding: 15px;
+}
+
+.todo {
+   &__container {
+   }
+   &__body {
+      border: 2px solid rgba(128, 128, 128, 0.3);
+      border-radius: 10px;
+      padding: 30px;
+   }
+   &__header {
+      margin-bottom: 10px;
+   }
+   &__items {
+      margin-bottom: 15px;
+   }
+   &__search {
+      margin-bottom: 15px;
+   }
+}

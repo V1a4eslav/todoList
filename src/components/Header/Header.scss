@@ -1,0 +1,20 @@
+.header {
+   display: flex;
+   align-items: center;
+   &__title {
+      font-weight: 500;
+      font-size: 30px;
+   }
+}
+.counters {
+   display: flex;
+   gap: 10px;
+   margin-left: auto;
+   span {
+      color: rgba(0, 0, 0, 0.719);
+   }
+   .count {
+      font-weight: 700;
+      font-size: 16px;
+   }
+}
