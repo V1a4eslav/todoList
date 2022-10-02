@@ -1,23 +1,9 @@
 import './AddField.scss';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../../store/slice/todoSlice';
-import { v4 } from 'uuid';
+import { useAddTodo } from '../../hooks/useAddTodo';
+
 
 export const AddField = () => {
-   const dispatch = useDispatch();
-   const [value, setValue] = useState('');
-
-   const addHandler = () => {
-      const todo = {
-         label: value,
-         id: v4(),
-         important: false
-      }
-
-      dispatch(addTodo(todo));
-      setValue('');
-   }
+   const { addHandler, setValue, value } = useAddTodo();
    return (
       <div className="todo__add-field add-field">
          <input

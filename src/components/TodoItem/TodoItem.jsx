@@ -1,20 +1,24 @@
 import './TodoItem.scss';
 import { useDispatch } from 'react-redux';
-import { completedTodo } from '../../store/slice/todoSlice';
+import { doneTodo } from '../../store/slice/todoSlice';
+// import { useState } from 'react';
+
 
 export const TodoItem = (props) => {
    const dispatch = useDispatch();
 
-
    const toggleImportant = (id) => {
-      dispatch(completedTodo(id));
+      dispatch(doneTodo(id));
    }
 
    return (
       <span onClick={() => toggleImportant(props.todo.id)}
-         className={props.todo.impotent ? "item__text _active" : "item__text"}>
+         className={
+            [props.todo.done ? "item__text _done" : "item__text",
+            props.todo.important ? "_important" : ''].join(' ')
+         }>
          {props.todo.label}
-      </span>
+      </span >
    );
 }
 

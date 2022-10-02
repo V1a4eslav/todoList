@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
    todos: [
-      { label: 'Drink coffee', id: 1, important: false },
-      { label: 'Listen teacher', id: 2, important: true },
-      { label: 'Sleep after afternoon', id: 3, important: false }
+      { label: 'Drink coffee', id: 1, important: false, done: false },
+      { label: 'Listen teacher', id: 2, important: true, done: false },
+      { label: 'Sleep after afternoon', id: 3, important: false, done: false }
    ]
 }
+
 
 export const todoSlice = createSlice({
    name: 'todo',
@@ -18,13 +19,17 @@ export const todoSlice = createSlice({
       removeTodo: (state, action) => {
          state.todos = state.todos.filter(todo => todo.id !== action.payload)
       },
-      completedTodo: (state, action) => {
-         const completedTodo = state.todos.find(todo => todo.id === action.payload);
-         completedTodo.important = !completedTodo.important;
+      doneTodo: (state, action) => {
+         const doneTodo = state.todos.find(todo => todo.id === action.payload);
+         doneTodo.done = !doneTodo.done;
+      },
+      importantTodo: (state, action) => {
+         const important = state.todos.find(todo => todo.id === action.payload);
+         important.important = !important.important;
       }
    }
 })
 
 
-export const { addTodo, removeTodo, completedTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, doneTodo, importantTodo } = todoSlice.actions;
 export default todoSlice.reducer;
