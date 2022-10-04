@@ -1,10 +1,32 @@
 import { TodoItem } from "../TodoItem/TodoItem";
 import { removeTodo } from "../../store/slice/todoSlice";
 import { importantTodo } from "../../store/slice/todoSlice";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 
 export const Todos = ({ items }) => {
    const dispatch = useDispatch();
+   const [todo, setTodo] = useState([]);
+   const term = useSelector((state) => state.field.term);
+   const filterLabel = useSelector((state) => state.field.filterLabel);
+
+   useEffect(() => {
+      let filterTodos = [];
+      if (filterLabel === 'All') {
+         filterTodos = [...items]
+      } else if (filterLabel === 'Active') {
+         filterTodos = items.filter(todo => !todo.done)
+      } else if (filterLabel === 'Done') {
+         filterTodos = items.filter(todo => todo.done)
+      }
+
+      if (term.length) {
+         const result = filterTodos.filter(todo => todo.label.toLowerCase().includes(term.toLowerCase()));
+         setTodo(result);
+      } else {
+         setTodo(filterTodos)
+      }
+   }, [term, items, filterLabel])
 
    const removeItem = (id) => {
       dispatch(removeTodo(id))
@@ -15,7 +37,7 @@ export const Todos = ({ items }) => {
 
    return (
       <ul className="todo__items">
-         {items.map(todo => (<li key={(todo.id)} className="todo__item item">
+         {todo.map(todo => (<li key={(todo.id)} className="todo__item item">
             <TodoItem todo={todo} />
             <div className="item__buttons">
                <button

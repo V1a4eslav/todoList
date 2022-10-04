@@ -5,7 +5,7 @@ const initialState = {
       { label: 'Drink coffee', id: 1, important: false, done: false },
       { label: 'Listen teacher', id: 2, important: true, done: false },
       { label: 'Sleep after afternoon', id: 3, important: false, done: false }
-   ]
+   ],
 }
 
 
@@ -26,7 +26,7 @@ export const todoSlice = createSlice({
       importantTodo: (state, action) => {
          const important = state.todos.find(todo => todo.id === action.payload);
          important.important = !important.important;
-      }
+      },
    }
 })
 
